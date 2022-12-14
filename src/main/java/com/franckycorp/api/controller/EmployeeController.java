@@ -48,10 +48,10 @@ public class EmployeeController {
     }
 
     /**
-     * Update
-     * @param id
-     * @param employee
-     * @return
+     * Update - Update an existing employee
+     * @param id - The id of the employee to update
+     * @param employee - The employee object updated
+     * @return - An updated employee object
      */
     @PutMapping("/employee/{id}")
     public Employee updateEmployee(@PathVariable("id") final Long id, @RequestBody Employee employee) {
@@ -88,8 +88,8 @@ public class EmployeeController {
     }
 
     /**
-     * Delete
-     * @param id
+     * Delete - Delete an employee
+     * @param id - The id of the employee to delete
      */
     @DeleteMapping("/employee/{id}")
     public void deleteEmployee(@PathVariable("id") final  Long id) {
