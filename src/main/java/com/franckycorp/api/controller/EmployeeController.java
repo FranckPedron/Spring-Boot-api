@@ -64,9 +64,9 @@ public class EmployeeController {
                 currentEmployee.setFirstName(firstName);
             }
 
-            String lastName = employee.getLastname();
+            String lastName = employee.getLastName();
             if (lastName != null) {
-                currentEmployee.setLastname(lastName);
+                currentEmployee.setLastName(lastName);
             }
 
             String mail = employee.getMail();
