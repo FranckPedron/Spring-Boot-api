@@ -39,12 +39,7 @@ public class EmployeeController {
      */
     @GetMapping("/employee/{id}")
     public Employee getEmployeeById(@PathVariable("id") final Long id) {
-        Optional<Employee> employee = employeeService.getEmployee(id);
-        if (employee.isPresent()) {
-            return employee.get();
-        } else {
-            return null;
-        }
+        return employeeService.getEmployee(id);
     }
 
     /**
@@ -55,9 +50,8 @@ public class EmployeeController {
      */
     @PutMapping("/employee/{id}")
     public Employee updateEmployee(@PathVariable("id") final Long id, @RequestBody Employee employee) {
-        Optional<Employee> e = employeeService.getEmployee(id);
-        if (e.isPresent()) {
-            Employee currentEmployee = e.get();
+
+        Employee currentEmployee = employeeService.getEmployee(id);
 
             String firstName = employee.getFirstName();
             if (firstName != null) {
@@ -81,10 +75,6 @@ public class EmployeeController {
 
             employeeService.saveEmployee(currentEmployee);
             return currentEmployee;
-        }
-        else {
-            return null;
-        }
     }
 
     /**

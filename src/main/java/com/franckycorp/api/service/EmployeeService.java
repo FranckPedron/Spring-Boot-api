@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import com.franckycorp.api.model.Employee;
 import com.franckycorp.api.repository.EmployeeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,10 @@ public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public Optional<Employee> getEmployee(final Long id) {
-        return employeeRepository.findById(id);
+    public Employee getEmployee(final Long id) {
+        Optional<Employee> optionalEmployee = employeeRepository.findById(id);
+        return optionalEmployee.orElseThrow(() -> new EntityNotFoundException("Cet employé n'existe pas")
+        );
     }
 
     public Iterable<Employee> getEmployees() {
@@ -29,7 +32,6 @@ public class EmployeeService {
     }
 
     public Employee saveEmployee(Employee employee) {
-        Employee savedEmployee = employeeRepository.save(employee);
-        return savedEmployee;
+        return employeeRepository.save(employee);
     }
 }
